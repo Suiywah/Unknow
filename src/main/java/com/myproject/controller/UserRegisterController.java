@@ -34,13 +34,18 @@ public class UserRegisterController {
 	
 	@RequestMapping(value="/email", method=RequestMethod.POST)
 	public String post(HttpServletRequest request) {
+		boolean flag = false;
 		log.info("用户注册register");
 		String name = request.getParameter("userName");
-		String password = request.getParameter("password");
 		log.info("用户注册使用IP地址：" + UserLoginUtils.getIpAddr(request));
-		Enumeration<String> headerName = request.getHeaderNames();
-		System.out.println(request.getHeader("user-agent"));
 		log.info("用户注册名：" + name);
-		return "";
+		if(userRegisterService != null) {
+			flag = userRegisterService.userRegister(request);
+		}
+		if(flag) {
+			return "loginSuccess";
+		} else {
+			return "error";
+		}
 	}
 }

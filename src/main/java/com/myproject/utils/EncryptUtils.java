@@ -44,7 +44,6 @@ public class EncryptUtils {
 		byte[] inByte = str.getBytes();
 //		md.reset();
 //		md.update(inByte);
-		System.out.println(md.getAlgorithm());
 		byte[] b = md.digest(inByte);
 //		return TestEncryptUtils.byteToHexString(b);
 		return toHex(b);

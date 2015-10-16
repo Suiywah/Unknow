@@ -68,7 +68,7 @@ public class UserDaoImpl implements UserDao {
 	 * @see com.myproject.dao.UserDao#insert(com.myproject.entity.User)
 	 */
 	public boolean insert(User user) {
-		String insertSql = "insert into users(id, name, password) values(nextval for SEQ_USERS, ?, ?)";
+		String insertSql = "insert into users(id, name, password, email) values(nextval from SEQ_USERS, ?, ?, ?)";
 		log.info("向表Users中新增一条数据，用户名:" + user.getName() + ", 执行语句：" + insertSql);
 		int i = this.template.update(insertSql, user.getName(), user.getPassword());
 		log.info("数据库操作结果：影响到的数据库表行数为" + i + "行");
