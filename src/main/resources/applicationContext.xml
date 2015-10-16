@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+	http://www.springframework.org/schema/beans/spring-beans.xsd
+	http://www.springframework.org/schema/context
+	http://www.springframework.org/schema/context/spring-context.xsd">
+	
+	<context:component-scan base-package="com.myproject.controller" />
+	
+	<bean id="viewResolver" class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+		<!-- <property name="viewClass" value="org.springframework.web.servlet.view.JstlView"/> -->
+		<property name="prefix" value="/WEB-INF/pages/"/>
+		<property name="suffix" value=".jsp"/>
+	</bean>
+	
+	<bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource">
+		<property name="driverClassName" value="${driverClassName}" />
+		<property name="url" value="${url}" />
+		<property name="username" value="${us}" /><!-- 如果变量名设置为username,系统则会取System.getProperty("user.name") -->
+		<property name="password" value="${password}" />
+		<property name="maxActive" value="100" /><!-- 连接池最大数据库连接数 -->
+		<property name="initialSize" value="10" /><!-- 初始化连接数量 -->
+		<property name="maxWait" value="60000" /><!-- 最大建立连接等待时间 -->
+		<property name="maxIdle" value="100" /><!-- 最大等待连接中的数量 -->
+		<property name="minIdle" value="1" /><!-- 最小等待连接中的数量 -->
+		<property name="removeAbandoned" value="true" /><!-- 强制自我中断，避免程序bug导致连接过久资源耗尽 -->
+		<property name="removeAbandonedTimeout" value="180" /><!-- 自我中断世间（m） -->
+	</bean>
+	
+	<context:property-placeholder location="/WEB-INF/properties/jdbc.properties"/>
+	
+	<bean id="template" class="org.springframework.jdbc.core.JdbcTemplate">
+		<property name="dataSource" ref="dataSource" />
+	</bean>
+	
+	<bean id="userDao" class="com.myproject.dao.UserDaoImpl">
+		<property name="template" ref="template" />
+	</bean>
+	
+	<bean id="userLoginService" class="com.myproject.service.UserLoginService" />
+	<bean id="userRegisterService" class="com.myproject.service.UserRegisterService" />
+</beans>
