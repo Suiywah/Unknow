@@ -9,7 +9,6 @@ package com.myproject.utils;
  */
 public class HexConver {
 	private final static char[] mChars = "0123456789ABCDEF".toCharArray();
-	private final static String mHexStr = "0123456789ABCDEF";
 	
 	public static String byte2HexStr(byte[] b) {
 		StringBuilder sb = new StringBuilder();
