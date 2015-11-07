@@ -18,10 +18,10 @@
 		text-decoration:none;
 	}
 </style>
-<title>音乐信息维护系统</title>
+<title>XX</title>
 </head>
 <body>
-<h2>欢迎使用音乐信息维护系统</h2>
+<h2>欢迎使用XX系统</h2>
 <div class="user-login">
 <a href="login">用户登录</a>或<a href="register">注册</a>
 </div>

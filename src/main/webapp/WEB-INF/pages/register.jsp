@@ -5,6 +5,16 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>用户注册</title>
+<script type="text/javascript" src="script/jquery-1.11.3.min.js"></script>
+<script type="text/javascript">
+$(document).ready(
+		function() {
+			alert(a);
+			$("#userName").blur(function() {alert(this.val())});
+			
+		}
+		);
+</script>
 </head>
 <body>
 <div class="container login_container" id="container">
