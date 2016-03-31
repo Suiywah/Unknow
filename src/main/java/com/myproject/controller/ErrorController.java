@@ -25,6 +25,7 @@ public class ErrorController {
 	@ResponseBody
 	public String handle(HttpServletRequest request) {
 		Map<String, Object> map = new HashMap<String, Object>();
+		logger.info("请求来源：" + request.getRequestURL());
 		map.put("status", request.getAttribute("javax.servlet.error.status_code"));
 		map.put("reason", request.getAttribute("javax.servlet.error.message"));
 		logger.error("访问请求发生错误，代码：" + request.getAttribute("javax.servlet.error.status_code") + ", 消息：" + request.getAttribute("javax.servlet.error.message"));

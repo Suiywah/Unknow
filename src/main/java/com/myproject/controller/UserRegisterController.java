@@ -3,8 +3,6 @@
  */
 package com.myproject.controller;
 
-import java.util.Enumeration;
-
 import javax.servlet.http.HttpServletRequest;
 
 import org.apache.log4j.Logger;

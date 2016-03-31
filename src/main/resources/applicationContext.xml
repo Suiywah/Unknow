@@ -10,13 +10,16 @@
 	http://www.springframework.org/schema/mvc
 	http://www.springframework.org/schema/mvc/spring-mvc-4.0.xsd">
 	
+	<import resource="resource.xml"/>
+	
+	
 	<mvc:annotation-driven />
 	
 	<context:component-scan base-package="com.myproject.controller" />
 	
 	<bean id="viewResolver" class="org.springframework.web.servlet.view.InternalResourceViewResolver">
 		<!-- <property name="viewClass" value="org.springframework.web.servlet.view.JstlView"/> -->
-		<property name="prefix" value="/WEB-INF/pages/"/>
+		<property name="prefix" value="/pages/"/>
 		<property name="suffix" value=".jsp"/>
 	</bean>
 	
@@ -34,7 +37,7 @@
 		<property name="removeAbandonedTimeout" value="180" /><!-- 自我中断世间（m） -->
 	</bean>
 	
-	<context:property-placeholder location="/WEB-INF/properties/jdbc.properties"/>
+	<context:property-placeholder location="/properties/jdbc.properties"/>
 	
 	<bean id="template" class="org.springframework.jdbc.core.JdbcTemplate">
 		<property name="dataSource" ref="dataSource" />
@@ -43,10 +46,10 @@
 	<bean id="userDao" class="com.myproject.dao.UserDaoImpl">
 		<property name="template" ref="template" />
 	</bean>
+	<bean id="adminDao" class="com.myproject.dao.AdminDaoImpl" />
 	
 	<bean id="userLoginService" class="com.myproject.service.UserLoginService" />
 	<bean id="userRegisterService" class="com.myproject.service.UserRegisterService" />
+	<bean id="adminService" class="com.myproject.service.AdminService" />
 	
-	<mvc:resources mapping="/script/**" location="/WEB-INF/script/" />
-	<mvc:resources mapping="/image/**" location="/WEB-INF/image/" />
 </beans>
